@@ -6,9 +6,9 @@
 var wordOptions = ["blue", "red", "green", "red", "purple", "orange", "yellow", "black", "white"]
 var selectedWord = "";
 var lettersInWord = [];
-var numBlnks = 0;
 var blanksAndSuccesses = [];
 var wrongLetters = [];
+var lettersGuessed = "";
 
 
 //game counters
@@ -35,7 +35,8 @@ function startGame () {
 
     //clicking on the main button adds the word to the card
     $(".btn-primary").on("click", function(){
-        $(".word-to-guess") = blanksAndSuccesses;
+        blanksAndSuccesses = $("<span>").text(blanksAndSuccesses);
+        $("#second-number").append(btnElement);
     })
 
     // testing / debugging
@@ -54,7 +55,7 @@ function checkLetter(letter) {
         }
     }
 
-    if(isLetterInWord) {
+    if(isLetterInWord === true) {
             for (var i = 0; i < selectedWord.length; i++) {
             if(selectedWord[i] = letter) {
                 blanksAndSuccesses[i] = letter;
@@ -92,10 +93,14 @@ function roundComplete() {
 startGame();
 
 //register keyclicks
+
+
+
+
 document.onkeyup = function(event) {
-    var lettersGuessed = String.fromCharCode(event.keyCode).toLowerCase();
-    checkLetter(lettersGuessed);
-    console.log(lettersGuessed);
+    letter = String.fromCharCode(event.keyCode).toLowerCase();
+    checkLetter();
+    console.log("You guessed: " + letter);
     // alert("You guessed a letter!")
 };
 
